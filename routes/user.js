@@ -41,6 +41,7 @@ const updateUser = async (req, res) => {
         res.status(500).json({error: 'Internal Server Error'});
     }
 };
+/*
 const addFeelings = async (req, res) => {
     try {
         const username = req.params.username;
@@ -162,16 +163,17 @@ const addActivity = async (req, res) => {
     }
 };
 
+*/
 
 module.exports = {
     createNewUser,
     updateUser,
-    addFeelings,
-    getFeelings,
-    getName,
+    //addFeelings,
+    //getFeelings,
+    //getName,
     //addActivity,
     //editActivity,
     //removeActivity,
     //getSoreArea, // possibly not working
-    getAllActivities
+    //getAllActivities
 }

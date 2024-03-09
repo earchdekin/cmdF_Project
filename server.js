@@ -71,6 +71,7 @@ app.get('/', async (req, res) => {
 app.post('/db/userlist', user.createNewUser);
 app.put('/db/userlist/:username', user.updateUser);
 
+/*
 app.post('/db/userlist/:username/feelings', user.addFeelings);
 app.get('/db/userlist/:username/name', user.getName);
 app.get('/db/userlist/:username/feelings', user.getFeelings);
@@ -89,6 +90,7 @@ app.delete('/db/userlist/:username/:activity', user.removeActivity);
 app.get('/db/userlist/:username', user.getAllActivities);
 
 app.get('/db/userlist/:username/:soreArea', user.getSoreArea);
+*/
 
 // Start the server after connecting to the database
 async function connectToDatabase() {
