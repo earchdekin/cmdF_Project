@@ -1,0 +1,209 @@
+body {
+    background-color: #252626; /* Dark blue-black color */
+    color: #fff; /* White text color for better readability */
+
+    font-family: 'CircularStd', sans-serif; /* Use Circular Std as the default font */
+    font-weight: 100; /* Adjust the font weight (normal) */
+      
+  }
+
+@font-face {
+  font-family: 'CircularStd';
+  src: url('circular-std-medium-500.ttf') format('truetype'); /* Adjust the path */
+  font-weight: normal;
+}
+
+
+/* Change the background color of the input field */
+input[type="text"] {
+    background-color: #474949; /* Specify your desired background color */
+    /* You can also add additional styling such as padding, border, etc. */
+  }
+
+  /* Add a box around the table */
+table {
+    background-color: #313333; /* Background color for the container */
+    border-radius: 10px; /* Rounded corners */
+    padding: 100px; /* Padding inside the box */
+    margin-top: 30px; /* Margin above the table */
+  }
+
+  /* Style the h1 element */
+h1 {
+    color: #319795; /* Red color for h1 text */
+    font-size: 18px; /* Adjust as needed */
+  }
+  
+  /* Style the h2 element */
+  h2 {
+    color: #ffffff; /* Blue color for h2 text */
+    font-size: 12px; /* Adjust as needed */
+  }
+
+  input[type="text"]::placeholder {
+    color: #474949; /* Light gray color for placeholder text */
+    border: none; /* Remove border */
+    background-color: transparent; /* Remove background color */
+    outline: none; /* Remove outline */
+    margin: 0; /* Remove default margin */
+  }
+
+  input[type="text"] {
+    border: none; /* Remove border */
+    outline: none; /* Remove outline */
+    
+    width: 300px; /* Adjust the width as needed */
+    height: 40px; /* Adjust the height as needed */
+    border-radius: 10px;
+    padding-left: 10px; /* Adjust the padding to move the text to the side */
+  }
+
+button[type="submit"] {
+  border: none;
+  background-color: #319795; /* Add background color for button */
+  color: #fff; /* Add text color for button */
+  outline: none;
+  margin: 0;
+  padding: 10px 20px; /* Adjust padding as needed */
+  border-radius: 10px; /* Adjust border radius to match input box */
+  cursor: pointer; /* Add cursor pointer on hover */
+}
+
+
+button[type="filter"] {
+    border: none;
+    outline: none;
+    margin: 0;
+    padding: 10px 20px; /* Adjust padding as needed */
+    border-radius: 10px; /* Adjust border radius to match input box */
+    cursor: pointer; /* Add cursor pointer on hover */
+    background-color: #319795; /* Add background color for button */
+    color: #fff; /* Add text color for button */
+    font-size: 20px;
+  }
+
+
+  /* Style the header cells in the table */
+table th {
+    color: #319795; /* Blue color for header text */
+  }
+
+
+th:first-child {
+    padding-right: 400px; /* Adjust the value as needed */
+  }
+
+  .container {
+    padding-left: 100px; /* Adjust the value as needed */
+  }
+  
+  
+  .container > div {
+    padding-left: 20px; /* Adjust the padding as needed */
+    padding-right: 20px; /* Adjust the padding as needed */
+  }
+
+  .table-wrapper {
+    display: flex;
+    align-items: center;
+  }
+  
+  .table-wrapper table {
+    margin-right: 40px; /* Adjust as needed */
+  }
+  
+
+  .add-button {
+    margin-right: 20px; /* Adjust as needed */
+  }
+  
+  button[type="submit"] {
+    margin-right: 20px; /* Adjust as needed */
+    width: 100px;
+    height: 50px;
+    font-size: 20px;
+  }
+  
+
+  .table-wrapper table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .table-wrapper th,
+  .table-wrapper td {
+    padding: 20px;
+  }
+  
+  
+  .table-wrapper tr:not(:last-child) {
+    border-bottom: 2px solid #ffffff; /* Adjust the thickness as needed */    
+  }
+
+  /* Adjust the width of the horizontal line */
+.table-wrapper tr:not(:last-child) td {
+    border-bottom-width: 40px; /* Adjust as needed */
+  }
+  
+  
+  .table-wrapper td {
+    vertical-align: top;
+  }
+  
+
+  .table-wrapper th:first-child,
+.table-wrapper td:first-child {
+  text-align: left; /* Align text to the left */
+  width: 50%; /* Set width to 50% of the table */
+}
+
+.table-wrapper th:last-child,
+.table-wrapper td:last-child {
+  text-align: right; /* Align text to the right */
+  width: 50%; /* Set width to 50% of the table */
+}
+
+.input-wrapper input {
+    margin-right: 10px; /* Add margin to the right of the input field */
+  }
+  
+.no-words {
+    text-align: left;
+    width: 0%; /* Set width to 50% of the table */
+    color:#ffffff;
+    opacity: 0.3
+  }
+  
+  .table-wrapper .table-separator td {
+    height: 1px
+  }
+
+  /* style.css */
+
+/* style.css */
+
+/* Hide the pointer arrow */
+.reactjs-popup-content .reactjs-popup-arrow {
+    display: none;
+  }
+  
+  /* Custom styles for the content */
+/* styles.css */
+
+/* Custom styles for the Popup content */
+/* styles.css */
+
+/* Custom styles for the Popup content */
+.reactjs-popup-content {
+    background-color: #f0f0f0 !important; /* Change to your desired background color */
+    color: #333; /* Change to your desired text color */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    
+  }
+
+  /* Custom font color for the button text */
+.reactjs-popup-content button {
+    color: #8e4b4b; /* Change to your desired font color */
+  }
+  

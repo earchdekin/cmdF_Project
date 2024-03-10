@@ -41,11 +41,15 @@ const updateUser = async (req, res) => {
         res.status(500).json({error: 'Internal Server Error'});
     }
 };
-
 const addWord = async (req, res) => {
     try {
         const username = req.params.username;
         const word = req.body.word;
+
+        // Check if the word is null or undefined
+        if (!word) {
+            return res.status(400).json({ error: 'Word is required' });
+        }
 
         const user = await collection.findOne({ username: username });
 
@@ -67,6 +71,7 @@ const addWord = async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 };
+
 
 // Handler function to delete a word
 const deleteWord = async (req, res) => {
@@ -97,7 +102,9 @@ const deleteWord = async (req, res) => {
 
 const getUser = async (req, res) => {
     try {
+        console.log("HELP!");
         const username = req.params.username;
+        console.log(username);
 
         const user = await collection.findOne({ username: username });
 
