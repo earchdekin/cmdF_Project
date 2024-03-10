@@ -1,14 +1,19 @@
-//source: https://www.youtube.com/watch?v=A53T9_V8aFk&t=478s&ab_channel=SakuraDev
 import NextAuth from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
+
+const googleClientId = process.env.GOOGLE_CLIENT_ID ?? "";
+const googleClientSecret = process.env.GOOGLE_CLIENT_SECRET ?? "";
 
 const handler = NextAuth({
     providers:[
         GoogleProvider({
-            clientId: process.env.GOOGLE_CLIENT_ID ?? "",
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET?? "",
-            })
+            clientId: googleClientId,
+            clientSecret: googleClientSecret,
+        })
     ],
 });
 
-export {handler as GET, handler as POST};
+// Log the clientId to the console
+console.log("Google Client ID:", googleClientId);
+
+export { handler as GET, handler as POST };

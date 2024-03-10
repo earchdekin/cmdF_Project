@@ -136,9 +136,13 @@ def main():
                             j = line.replace(w, "***") #REPLACE BAD WORDS
                     print(j)
                     
-                    f = open("data.txt", "w")
-                    f.write(j)
-                    f.close()
+                    # f = open("data.txt", "w")
+                    #f = open("frontend-thing/src/Pages/word_file.txt", "w")
+                    #f.write(j)
+                    #f.close()
+                    with open("frontend-thing/src/Pages/words_file.txt", "w") as f:
+                        # Write the content of j to the file
+                        f.write(j)
                     # print(line)
                 # Flush stdout.
                 print('', end='', flush=True)

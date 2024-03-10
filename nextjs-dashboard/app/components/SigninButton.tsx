@@ -12,7 +12,7 @@ const SigninButton = () => {
     return (
       <div className="flex gap-2 ml-auto">
         <p className="text-zinc-50">{session.user.name}</p>
-        <button onClick={() => signOut({callbackUrl:'https://localhost:3000'}) }className ="text-zinc-50 ml-auto pl-5">
+        <button onClick={() => signOut({callbackUrl:'https://localhost:3001'}) }className ="text-zinc-50 ml-auto pl-5">
           Sign Out
         </button>
       </div>
