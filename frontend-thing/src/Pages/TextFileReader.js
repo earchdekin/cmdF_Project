@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Popup from 'reactjs-popup';
-import 'reactjs-popup/dist/index.css';
 
 import raw from './words_file.txt';
 
@@ -37,13 +35,4 @@ function TextFileReader() {
   );
 }
 
-const Home = () => (
-  <div>
-    <h1>Welcome to Home Page</h1>
-    <Popup trigger={<button>Trigger Popup</button>} position="right center">
-      <TextFileReader />
-    </Popup>
-  </div>
-);
-
-export default Home;
+export default TextFileReader;

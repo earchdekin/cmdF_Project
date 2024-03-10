@@ -97,7 +97,9 @@ const deleteWord = async (req, res) => {
 
 const getUser = async (req, res) => {
     try {
+        console.log("HELP!");
         const username = req.params.username;
+        console.log(username);
 
         const user = await collection.findOne({ username: username });
 
