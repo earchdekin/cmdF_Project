@@ -32,8 +32,7 @@ function TextFileReader() {
 
   return (
     <div>
-      <h1>Text File Content!:</h1>
-      <pre>{text}</pre>
+      <h1>{text}</h1>
     </div>
   );
 }
