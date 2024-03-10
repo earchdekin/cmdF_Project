@@ -1,5 +1,43 @@
 import React, { useState, useEffect } from 'react';
+import Popup from 'reactjs-popup';
 import './../styles.css'; // Import the CSS file
+import 'reactjs-popup/dist/index.css';
+import raw from './words_file.txt';
+
+import logo from './logo.png';
+import trash from './trash.png';
+
+function TextFileReader() {
+  const [text, setText] = useState('');
+
+  useEffect(() => {
+    const filePath = raw; // Specify the file path here
+    const fetchData = async () => {
+      try {
+        const response = await fetch(filePath);
+        const data = await response.text();
+        setText(data);
+      } catch (error) {
+        console.error('Error fetching text file:', error);
+      }
+    };
+
+    // Fetch initial data
+    fetchData();
+
+    // Set up interval to fetch data periodically
+    const intervalId = setInterval(fetchData, 5000); // Adjust the interval time as needed
+
+    // Cleanup function to clear interval
+    return () => clearInterval(intervalId);
+  }, []);
+
+  return (
+    <div>
+      <h1>{text}</h1>
+    </div>
+  );
+}
 
 const WordsList = () => {
   const [userData, setUserData] = useState(null);
@@ -59,9 +97,22 @@ const WordsList = () => {
     console.log('Filtering voice chat now...');
   };
 
+  const handleLogout = () => {
+    // Implement your logout logic here
+    console.log('Logout clicked');
+  };
+
   return (
     <div className="container">
       <div>
+        <div className="top-bar">
+          <div className="logo-container">
+            <img src={logo} alt="Logo" className="logo" />
+          </div>
+          <div className="logout-button-container">
+            <button onClick={handleLogout} className="logout-button">Logout</button>
+          </div>
+        </div>
         <h1 className="title">List of filtered words in voice chat</h1>
         <h2 className="subtitle">Input the word you do not want to hear during voice chat. We will filter the speech for you.</h2>
         <div className="input-wrapper">
@@ -75,7 +126,7 @@ const WordsList = () => {
         </div>
 
         {userData && userData.words.length > 0 ? (
-            <div className="table-wrapper">
+          <div className="table-wrapper">
             <table>
               <thead>
                 <tr>
@@ -93,7 +144,7 @@ const WordsList = () => {
                     <td>{word}</td>
                     <td>
                       <img
-                        src="./trash.png" // Relative path to the image
+                        src={trash} // Relative path to the image
                         alt="Delete"
                         style={{ cursor: 'pointer' }} // Add styling to change cursor to pointer on hover
                         onClick={() => handleDeleteWord(word)}
@@ -103,7 +154,20 @@ const WordsList = () => {
                 ))}
               </tbody>
             </table>
-            <button type="filter" className="filter-button" onClick={handleFilterVoiceChat}>Filter voice chat now</button>
+            <Popup trigger={<button type="filter" className="filter-button">Filter voice chat now</button>} 
+            position="left"
+             contentStyle={{ 
+               backgroundColor: '#333333', 
+               color: '#333', 
+               borderRadius: '5px', 
+               boxShadow: '0 0 10px rgba(0, 0, 0, 0.2)', 
+               padding: '20px',
+               width: '400px', // Adjust the width as needed
+               height: '300px' // Adjust the height as needed
+             }}>
+            <TextFileReader />
+            
+            </Popup>
           </div>
         ) : (
           <div className="table-wrapper">
@@ -124,7 +188,20 @@ const WordsList = () => {
                 </tr>
               </tbody>
             </table>
-            <button type="filter" className="filter-button" onClick={handleFilterVoiceChat}>Filter VoiceChat Now</button>
+            <Popup trigger={<button type="filter" className="filter-button">Filter voice chat now</button>}
+             position="left"
+             contentStyle={{ 
+               backgroundColor: '#333333', 
+               color: '#333', 
+               borderRadius: '5px', 
+               boxShadow: '0 0 10px rgba(0, 0, 0, 0.2)', 
+               padding: '20px',
+               width: '400px', // Adjust the width as needed
+               height: '300px' // Adjust the height as needed
+             }}
+            >
+                <TextFileReader />
+            </Popup>
           </div>
         )}
       </div>

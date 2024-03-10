@@ -1,20 +1,30 @@
 import React, { useState, useEffect } from 'react';
-import Popup from 'reactjs-popup';
-import 'reactjs-popup/dist/index.css';
+import ReactDOM from 'react-dom'; // Import ReactDOM
 import './../styles.css'; // Import the CSS file
 
 import raw from './words_file.txt';
 
-function TextFileReader() {
-  const [text, setText] = useState('');
+const PopupContent = ({ text }) => (
+  <div>
+    <h1>{text}</h1>
+  </div>
+);
 
-  useEffect(() => {
-    const filePath = raw; // Specify the file path here
+const Home = () => {
+  const openPopup = () => {
+    const popupWindow = window.open('', '_blank', 'width=600,height=400');
+    popupWindow.document.write('<html><head><title>Popup Window</title></head><body><div id="popup-content"></div></body></html>');
+
+    const container = popupWindow.document.getElementById('popup-content');
+    container.appendChild(document.createElement('div'));
+    container.firstChild.appendChild(document.createTextNode('Loading...'));
+
     const fetchData = async () => {
       try {
-        const response = await fetch(filePath);
+        const response = await fetch(raw);
         const data = await response.text();
-        setText(data);
+        container.firstChild.innerHTML = ''; // Clear previous content
+        ReactDOM.render(<PopupContent text={data} />, container.firstChild);
       } catch (error) {
         console.error('Error fetching text file:', error);
       }
@@ -27,23 +37,15 @@ function TextFileReader() {
     const intervalId = setInterval(fetchData, 5000); // Adjust the interval time as needed
 
     // Cleanup function to clear interval
-    return () => clearInterval(intervalId);
-  }, []);
+    popupWindow.onbeforeunload = () => clearInterval(intervalId);
+  };
 
   return (
     <div>
-      <h1>{text}</h1>
+      <h1>Welcome to Home Page</h1>
+      <button onClick={openPopup}>Open Popup</button>
     </div>
   );
-}
-
-const Home = () => (
-  <div>
-    <h1>Welcome to Home Page</h1>
-    <Popup trigger={<button>Trigger Popup</button>} position="right center">
-      <TextFileReader />
-    </Popup>
-  </div>
-);
+};
 
 export default Home;
