@@ -46,7 +46,7 @@ webpush.setVapidDetails(
   );
 
   // Enable CORS for specific origins
-const allowedOrigins = ['http://localhost:3001', 'http://example.com', 'http://localhost:3001/wordslist'];
+const allowedOrigins = ['http://localhost:3001', 'http://example.com', 'http://localhost:3001/wordslist', 'http://localhost:3002/wordslist'];
 app.use(cors({
   origin: function (origin, callback) {
     if (!origin || allowedOrigins.includes(origin)) {
@@ -91,6 +91,7 @@ app.get('/', async (req, res) => {
 });
 
 app.post('/db/userlist', user.createNewUser);
+app.get('/db/userlist/:username', user.getUser);
 app.put('/db/userlist/:username', user.updateUser);
 
 app.post('/db/userlist/:username/', user.addWord);

@@ -14,7 +14,34 @@ from time import sleep
 from sys import platform
 
 
-def main():
+import asyncio
+
+async def process_and_write_text(text):
+    # Split text into chunks of maximum 10 words
+    def split_text(text):
+        words = text.split()
+        chunks = []
+        for i in range(0, len(words), 10):
+            chunks.append(' '.join(words[i:i+10]))
+        return chunks
+
+    # Check if text contains more than 10 words
+    if len(text.split()) > 10:
+        # Split text into chunks of maximum 10 words
+        chunks = split_text(text)
+        # Write each chunk to the file with a delay of 5 seconds
+        with open("data.txt", "w") as f:
+            for chunk in chunks:
+                f.write(chunk + "\n")
+                # await asyncio.sleep(5)  # Wait for 5 seconds
+    else:
+        # Write text to the file
+        with open("data.txt", "w") as f:
+            f.write(text)
+
+
+
+async def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--model", default="medium", help="Model to use",
                         choices=["tiny", "base", "small", "medium", "large"])
@@ -135,16 +162,31 @@ def main():
                         if w in line.lower():
                             j = line.replace(w, "***") #REPLACE BAD WORDS
                     print(j)
+
+                    await process_and_write_text(j)
                     
                     f = open("data.txt", "w")
+                    #f = open("frontend-thing/src/Pages/word_file.txt", "w")
                     f.write(j)
                     f.close()
+                    
+                    directory_path = "frontend-thing/src/Pages/"
+
+                    # Check if the directory exists
+                    if not os.path.exists(directory_path):
+                        # If the directory doesn't exist, create it
+                        os.makedirs(directory_path)
+
+                    # Open the file for writing
+                    with open(directory_path + "words_file.txt", "w") as f:
+                        # Write the content of j to the file
+                        f.write(j)
                     # print(line)
                 # Flush stdout.
                 print('', end='', flush=True)
 
                 # Infinite loops are bad for processors, must sleep.
-                sleep(0.25)
+                sleep(0.1)
         except KeyboardInterrupt:
             break
 
@@ -154,8 +196,7 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
-
+    asyncio.run(main())
 
 #credit to https://github.com/davabase/whisper_real_time
 # For more information on Whisper please see https://github.com/openai/whisper
