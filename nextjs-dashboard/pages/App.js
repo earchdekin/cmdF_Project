@@ -11,15 +11,12 @@ function App() {
             <ul>
               <li>
                 <Link to="/wordslist">WordsList</Link>
+                <Link to="/login">Logint</Link>
               </li>
             </ul>
           </nav>
   
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/textfile" element={<TextFileReader />} />
             <Route path="/wordslist" element={<WordsList />} />
             <Route path="/home" element={<HomeNext />} />
           </Routes>
