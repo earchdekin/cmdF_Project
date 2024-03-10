@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
+import './../styles.css'; // Import the CSS file
 
 import raw from './words_file.txt';
 
@@ -31,7 +32,7 @@ function TextFileReader() {
 
   return (
     <div>
-      <h1>Text File Content:</h1>
+      <h1>Text File Content!:</h1>
       <pre>{text}</pre>
     </div>
   );
