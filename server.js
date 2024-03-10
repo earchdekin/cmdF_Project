@@ -199,6 +199,38 @@ const newFilePath = path.join(recordingsFolder, newFileName);
     res.sendStatus(200); // Send a success response back to the client
 });
 
+// Define storage for audio files
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'uploads/audio_clips');
+    },
+    filename: function (req, file, cb) {
+      cb(null, file.originalname);
+    }
+  });
+
+// Initialize multer upload middleware
+const upload1 = multer({ storage: storage });
+
+// POST endpoint to upload audio file for a user
+app.post('/db/userlist/:username/audio', upload1.single('audioFile'), (req, res) => {
+  try {
+    const username = req.params.username;
+    const audioFile = req.file;
+
+    // Check if the audio file was uploaded
+    if (!audioFile) {
+      return res.status(400).json({ error: 'No audio file uploaded' });
+    }
+
+    // Return success response
+    res.status(200).json({ message: 'Audio file uploaded successfully' });
+  } catch (error) {
+    console.error('Error uploading audio file:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 // Start the server after connecting to the database
 connectToDatabase().then(() => {
     app.listen(port, () => {
