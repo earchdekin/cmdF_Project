@@ -19,7 +19,7 @@ const SigninButton = () => {
     );
   }
   return (
-    <button onClick={() => signIn('google', { callbackUrl: '/../../../frontend-thing/App.js' })} className="h-10 w-80 text-black-300 hover:bg-zinc-300 hover:border-zinc-300 ml-auto bg-zinc-50 rounded-md duration-100 border-8 border-zinc-50">
+    <button onClick={() => signIn('google', { callbackUrl: '/../../../frontend-thing/src/Pages/WordsList' })} className="h-10 w-80 text-black-300 hover:bg-zinc-300 hover:border-zinc-300 ml-auto bg-zinc-50 rounded-md duration-100 border-8 border-zinc-50">
       Continue With Google
     </button>
   

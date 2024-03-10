@@ -5,6 +5,7 @@ import About from './Pages/About';
 import Contact from './Pages/Contact';
 import TextFileReader from './Pages/TextFileReader';
 import WordsList from './Pages/WordsList';
+import HomeNext from './../../nextjs-dashboard/app/page/'
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/textfile" element={<TextFileReader />} />
           <Route path="/wordslist" element={<WordsList />} />
+          <Route path="/home" element={<HomeNext />} />
         </Routes>
       </div>
     </Router>
