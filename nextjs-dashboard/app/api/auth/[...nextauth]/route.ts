@@ -7,13 +7,12 @@ const googleClientSecret = process.env.GOOGLE_CLIENT_SECRET ?? "";
 const handler = NextAuth({
     providers:[
         GoogleProvider({
-            clientId: googleClientId,
-            clientSecret: googleClientSecret,
+            clientId: process.env.GOOGLE_CLIENT_ID ?? "",
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET?? "",              
         })
+        
     ],
 });
 
-// Log the clientId to the console
-console.log("Google Client ID:", googleClientId);
 
-export { handler as GET, handler as POST };
+export {handler as GET, handler as POST};
