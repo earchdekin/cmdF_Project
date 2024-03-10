@@ -98,7 +98,8 @@ app.post('/db/userlist/:username/', user.addWord);
 app.delete('/db/userlist/:username/:word', user.deleteWord);
 
 // Define the route for getting a user
-app.get('/db/userlist/:username', user.getUser);
+
+
 
 
 /*
