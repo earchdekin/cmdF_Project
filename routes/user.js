@@ -41,35 +41,80 @@ const updateUser = async (req, res) => {
         res.status(500).json({error: 'Internal Server Error'});
     }
 };
-/*
-const addFeelings = async (req, res) => {
+
+const addWord = async (req, res) => {
     try {
         const username = req.params.username;
-        const feelingsValue = parseInt(req.body.feelings);
+        const word = req.body.word;
 
-        const user = await collection.findOne({username: username});
+        const user = await collection.findOne({ username: username });
 
         if (!user) {
-            return res.status(404).json({error: 'User not found'});
+            return res.status(404).json({ error: 'User not found' });
         }
 
-        if (isNaN(feelingsValue) || feelingsValue < 1 || feelingsValue > 10) {
-            return res.status(400).json({error: 'Invalid feelings value. It should be an integer between 1 and 10.'});
+        // Check if the word already exists in the user's words array
+        if (user.words.includes(word)) {
+            return res.status(400).json({ error: 'Word already exists for this user' });
         }
-
-        const currentTime = new Date();
-        const feelingsEntry = {timestamp: currentTime, value: feelingsValue};
 
         // Update the user document in the MongoDB collection
-        await collection.updateOne({username: username}, {$push: {feelings: feelingsEntry}});
+        await collection.updateOne({ username: username }, { $push: { words: word } });
 
-        res.status(201).json({message: 'Feelings added successfully'});
+        res.status(201).json({ message: 'Word added successfully' });
     } catch (error) {
-        console.error('Error adding feelings:', error);
-        res.status(500).json({error: 'Internal Server Error'});
+        console.error('Error adding word:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
     }
 };
 
+// Handler function to delete a word
+const deleteWord = async (req, res) => {
+    try {
+        const username = req.params.username;
+        const wordToDelete = req.params.word;
+
+        const user = await collection.findOne({ username: username });
+
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        // Check if the word exists in the user's words array
+        if (!user.words.includes(wordToDelete)) {
+            return res.status(400).json({ error: 'Word does not exist for this user' });
+        }
+
+        // Update the user document in the MongoDB collection to remove the word
+        await collection.updateOne({ username: username }, { $pull: { words: wordToDelete } });
+
+        res.status(200).json({ message: 'Word deleted successfully' });
+    } catch (error) {
+        console.error('Error deleting word:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
+
+const getUser = async (req, res) => {
+    try {
+        const username = req.params.username;
+
+        const user = await collection.findOne({ username: username });
+
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        res.status(200).json(user);
+    } catch (error) {
+        console.error('Error getting user:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
+
+
+
+/*
 const getFeelings = async (req, res) => {
     try {
         const username = req.params.username;
@@ -90,7 +135,9 @@ const getFeelings = async (req, res) => {
 
 
 };
+*/
 
+/*
 const getAllActivities = async (req, res) => {
     try {
         const username = req.params.username;
@@ -168,6 +215,9 @@ const addActivity = async (req, res) => {
 module.exports = {
     createNewUser,
     updateUser,
+    addWord,
+    deleteWord,
+    getUser
     //addFeelings,
     //getFeelings,
     //getName,
